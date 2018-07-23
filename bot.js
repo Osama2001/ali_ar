@@ -8,9 +8,40 @@ const youtube = new YouTube("AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8");
 const queue = new Map();
 const client = new Discord.Client();
 const prefix = "$"
+client.on('ready', () => {
+  console.log('╔[════════════════════════════════════]╗');
+  console.log('')
+  console.log('            ╔[════════════]╗')
+  console.log('              Bot Is Online')
+  console.log('            ╚[════════════]╝')
+  console.log('')
+  console.log(`Logged in as ${client.user.tag}!`);
+  console.log('')
+  console.log(`servers! [ " ${client.guilds.size} " ]`);
+  console.log('')
+  console.log('By Osama_DK')
+  console.log('')  
+  console.log(`Users! [ " ${client.users.size} " ]`);
+  console.log('')
+  console.log('╚[════════════════════════════════════]╝')
+});
 
 
 
+
+
+
+
+client.on('message', message => {
+  if (!message.content.startsWith(prefix)) return;
+  const verifed = ["436960038935068672"];
+if (message.content.startsWith(prefix + 'owner')) {
+if( verifed.some(word => message.author.id.includes(word)) ) {    return message.channel.sendMessage(`**   جا صاحب البوت هنا الكل يوقف**` + `✅`)
+} else {
+   message.reply('**انت لست صاحب البوت**' + '❌');   
+}
+}
+});
 
 
 
