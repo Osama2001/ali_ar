@@ -398,13 +398,12 @@ let heroo = new Discord.RichEmbed()
 .addField("Users :","**[ "+client.users.size+" ]**",true)
 .addField("MyName : ","**[ "+client.user.username+" ]**",true)
 .addField("MyID :","**[ "+client.user.id+" ]**",true)
-.addField("RamUsage :",`**[ ${(process.memoryUsage().rss / 1048576).toFixed()}MB ]**`,true)
+.addField("RamUsage :",`**[ ${(process.memoryUsage().rss 1048576).toFixed()}MB ]**`,true)
 .addField("UpTime :",`**[** **Days:** \`${days}\` **Hours:** \`${hours}\` **Minutes:** \`${minutes}\` **Seconds:** \`${seconds}\` **]**`,true)
 .setFooter("SenioR TeaM. |")
   message.channel.send({embed:v1}).then(m => m.edit({embed:heroo})),ms; 
     }
 });
-
 
 
 
