@@ -355,7 +355,7 @@ var embed = new Discord.RichEmbed()//تا
   Users:busts_in_silhouette: :${client.users.size}
  Channels:books: : ${client.channels.size}
  RAM Usage📝 :${(process.memoryUsage().rss / 1048576).toFixed()}MB
- Discord.js:ping_pong:  :v${version}
+
  UpTime🕛  :${timeCon(process.uptime())}
  Node  :${process.version}**`)
      .setFooter('all copyrights reserved ©',client.user.avatarURL)
