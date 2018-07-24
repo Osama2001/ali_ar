@@ -44,6 +44,16 @@ if( verifed.some(word => message.author.id.includes(word)) ) {    return message
 });
 
 
+             client.on('message', message => {
+                if(message.content === prefix + "inv") {
+                    let embed = new Discord.RichEmbed ()
+                    embed.setTitle("**:arrow_right: Click To Invite CREEPER BOT :arrow_left:**")
+                    .setURL("https://discordapp.com/oauth2/authorize?client_id=471008677919326208&scope=bot&permissions=1");
+                   message.channel.sendEmbed(embed);
+                  }
+});
+
+
 
 //by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
 
