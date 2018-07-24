@@ -345,24 +345,64 @@ ${prefix}queue ⇏ لمعرفة قآئمة التشغيل
   
   
    
-client.on('message', message => {
-if (message.content === prefix+'bot'){
-     if(!message.channel.guild) return message.reply('** This command only for servers**');
-var embed = new Discord.RichEmbed()//تا
-    .setAuthor(client.user.username, client.user.avatarURL)
-.setDescription(`**Ping:rocket: : ${Date.now() - message.createdTimestamp}
- Servers:globe_with_meridians: :${client.guilds.size}
-  Users:busts_in_silhouette: :${client.users.size}
- Channels:books: : ${client.channels.size}
- RAM Usage📝 :${(process.memoryUsage().rss / 1048576).toFixed()}MB
+client.on("message",function(message) {
+    if(message.content.startsWith(prefix + "stats")) {
+           let uptime = client.uptime;
 
- UpTime🕛  :${timeCon(process.uptime())}
- Node  :${process.version}**`)
-     .setFooter('all copyrights reserved ©',client.user.avatarURL)
- .setFooter(`ClaimBot`, client.user.avatarURL)
-    message.channel.sendEmbed(embed)
-    console.log('[bot] Send By: ' + message.author.username)
-}
+    let days = 0;
+    let hours = 0;
+    let minutes = 0;
+    let seconds = 0;
+    let notCompleted = true;
+
+    while (notCompleted) {
+
+        if (uptime >= 8.64e+7) {
+
+            days++;
+            uptime -= 8.64e+7;
+
+        } else if (uptime >= 3.6e+6) {
+
+            hours++;
+            uptime -= 3.6e+6;
+
+        } else if (uptime >= 60000) {
+
+            minutes++;
+            uptime -= 60000;
+
+        } else if (uptime >= 1000) {
+            seconds++;
+            uptime -= 1000;
+
+        }
+
+        if (uptime < 1000)  notCompleted = false;
+
+    }
+let ms = 1000;
+let v1 = new Discord.RichEmbed()
+  v1.setTimestamp(new Date())
+  v1.setColor("RED")
+  v1.setDescription('***__ Collecting Data __***')
+  v1.setFooter("# | SenioR |") 
+let heroo = new Discord.RichEmbed()
+.setColor('RANDOM')
+.setTimestamp(new Date())
+.setThumbnail(client.user.avatarURL)
+.setAuthor(client.user.username,client.user.avatarURL)
+.addField("MyPrefix :",`**[ ${prefix} ]**`,true)
+.addField("Guilds :","**[ "+client.guilds.size+" ]**",true)
+.addField("Channels :","**[ "+client.channels.size+" ]**",true)
+.addField("Users :","**[ "+client.users.size+" ]**",true)
+.addField("MyName : ","**[ "+client.user.username+" ]**",true)
+.addField("MyID :","**[ "+client.user.id+" ]**",true)
+.addField("RamUsage :",`**[ ${(process.memoryUsage().rss / 1048576).toFixed()}MB ]**`,true)
+.addField("UpTime :",`**[** **Days:** \`${days}\` **Hours:** \`${hours}\` **Minutes:** \`${minutes}\` **Seconds:** \`${seconds}\` **]**`,true)
+.setFooter("SenioR TeaM. |")
+  message.channel.send({embed:v1}).then(m => m.edit({embed:heroo})),ms; 
+    }
 });
 
 
@@ -438,34 +478,6 @@ message.channel.send(`**:white_check_mark: ${user.tag} banned from the server ! 
 }
 });
   
-  
-  client.on('message', message => {
-        let reason = message.content.split(" ").slice(2).join(" ")
-        let muterole = message.guild.roles.find("name", "muted")
-        let men = message.mentions.users.first()
-
-        if(message.content.startsWith(prefix + "mute")) {
-            if(!men) return message.channel.send("**Do you want me to mute you 🤔 ?, please @mention someone. `Ex. #mute @xRokz bad boy`**");
-            if(!reason) return message.channel.send("**Do you want me to mute " + men.username + " with no reason ?, `Ex. #mute @xRokz bad boy` or just use `none` for no reason **`")
-            if(!muterole) {
-                message.guild.createRole({name: "muted", color:"#505f74", permissions: [1115136]})
-
-            }
-            message.guild.member(men).addRole(muterole)
-                message.channel.send("**" + men.username + " has been muted! :zipper_mouth:**")
-        }
-
-        if(message.content.startsWith(prefix + "unmute")) {
-            if(!men) return message.channel.send("**please @mention someone. `Ex. #unmute <@!298732816995319809> bad boy`**");
-
-            if(!muterole) {
-                message.guild.createRole({name: "muted", color:"#505f74", permissions: [1115136]})
-
-            }
-            message.guild.member(men).removeRole(muterole)
-                message.channel.send("**" + men.username + " has been unmuted! 😀 **")
-        }
-    })
   
   
   
